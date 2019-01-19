@@ -51,28 +51,21 @@ class NPSStractionData:
         for columnsKey in self.NLPDS:
             finalColl.append([self.NLPDS[columnsKey]['question'], self.NLPDS[columnsKey]['evaluacion']])
         print(finalColl)
-        finalCollT  = []
-        for row in zip(*finalColl):
-            finalCollT.append(list(row))
+        finalColl =  self.getRandomMarketValues(finalColl)
+        finalColl =  self.getRandomExpectedValues(finalColl)
+        print(finalColl)
 
-        finalCollT =  self.getRandomMarketValues(finalCollT)
-        finalCollT =  self.getExpectedValues(finalCollT)
-        print(finalCollT)
-
+    #finalColl column 2
     def getRandomMarketValues(self, finalColl):
         columnName      = 'Mercado'
-        finalColl[0].append(columnName)
-        marketValues = len(finalColl[0])
-        value = random.randrange(65, 80 )
-        finalColl[1].append(value)
+        for questionRow in finalColl:
+            questionRow.append(random.randrange(65, 80 ))
         return finalColl
 
-    def getExpectedValues(self, finalColl):
-        columnName      = 'Resultado Esperado'
-        finalColl[0].append(columnName)
-        marketValues    = len(finalColl[0])
-        value = random.randrange(85,100)
-        finalColl[1].append(value)
+    #finalColl column 2
+    def getRandomExpectedValues(self, finalColl):
+        for questionRow in finalColl:
+            questionRow.append(random.randrange(75,100))
         return finalColl
 
 if  __name__ == '__main__':

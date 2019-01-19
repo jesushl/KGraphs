@@ -1,0 +1,16 @@
+function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable({DATATABLE});//
+
+        var options = {
+          title : 'Monthly Coffee Production by Country',
+          vAxis: {title: 'Cups'},
+          hAxis: {title: 'Month'},
+          seriesType: 'bars',
+          {SERIES}//
+          {ORIENTATION}//
+        },
+
+        var chart = new google.visualization.ComboChart(document.getElementById({ELEMENTID}));//
+        chart.draw(data, options);
+      }
