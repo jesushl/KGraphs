@@ -43,17 +43,18 @@ class NPSStractionData:
     def getNPSJSON4Graph(self, excelFile):
         df          = self.getNPSDataFrame(excelFile)
         self.getNPSColumnsColl(df)
-        print(df)
+        #print(df)
         self.getNPSDat(df)
         finalColl   = []
         #Column names definition
-        print(self.NLPDS)
+        #print(self.NLPDS)
         for columnsKey in self.NLPDS:
             finalColl.append([self.NLPDS[columnsKey]['question'], self.NLPDS[columnsKey]['evaluacion']])
-        print(finalColl)
+        #print(finalColl)
         finalColl =  self.getRandomMarketValues(finalColl)
         finalColl =  self.getRandomExpectedValues(finalColl)
-        print(finalColl)
+        #print(finalColl)
+        return finalColl
 
     #finalColl column 2
     def getRandomMarketValues(self, finalColl):
