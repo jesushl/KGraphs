@@ -2,7 +2,7 @@ class MultiBarGraphsJSGenerator:
     multiBarFrameworw = ''
 
     def buildMultiBarGraph(self, multiBarFramework = 'multiBarFramework.txt', orientation = 'vetical' , lineSet = [2,3]):
-        pass
+        self.loadMultiBarFramework(multiBarFramework)
 
     def loadMultiBarFramework(self, multiBarFrameworkFile):
         with open(multiBarFrameworkFile, 'r' ) as mbf:
