@@ -1,16 +1,30 @@
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawVisualization);
 function drawVisualization() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable({DATATABLE});//
 
         var options = {
-          title : 'Monthly Coffee Production by Country',
-          vAxis: {title: 'Cups'},
-          hAxis: {title: 'Month'},
+          title : 'NPS',
+          vAxis: {title: 'Calificacion'},
+          hAxis: {title: 'Pregunta'},
           seriesType: 'bars',
           {SERIES}//
-          {ORIENTATION}//
-        },
-
+          orientation : {ORIENTATION},
+          textStyle: {
+            fontName: 'Times-Roman',
+            fontSize: 18,
+            bold: true,
+            italic: true,
+            // The color of the text.
+            color: '#871b47',
+            // The color of the text outline.
+            auraColor: '#d799ae',
+            // The transparency of the text.
+            opacity: 0.8
+            },
+            
+          };
         var chart = new google.visualization.ComboChart(document.getElementById({ELEMENTID}));//
         chart.draw(data, options);
       }

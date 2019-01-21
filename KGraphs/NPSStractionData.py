@@ -22,6 +22,7 @@ class NPSStractionData:
             questionColumnName  = normalize('NFC', questionColumnName)
             for question in self.NPSQuestions:
                 if question in questionColumnName:
+                    question =  '{0}{1}{2}'.format('¿', question, '?')
                     if questionColumnName in self.NLPDS:
                         self.NLPDS[questionColumnName].update({'question' : question} )
                     else:
@@ -54,13 +55,14 @@ class NPSStractionData:
         finalColl =  self.getRandomMarketValues(finalColl)
         finalColl =  self.getRandomExpectedValues(finalColl)
         #print(finalColl)
+        finalColl.insert(0,['Pretunta', 'Resultado', 'Mercado', 'Esperado'])
         return finalColl
 
     #finalColl column 2
     def getRandomMarketValues(self, finalColl):
         columnName      = 'Mercado'
         for questionRow in finalColl:
-            questionRow.append(random.randrange(65, 80 ))
+            questionRow.append(random.randrange(20, 50 ))
         return finalColl
 
     #finalColl column 2
