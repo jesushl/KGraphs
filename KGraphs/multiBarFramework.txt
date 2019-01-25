@@ -23,7 +23,7 @@ function drawVisualization() {
             // The transparency of the text.
             opacity: 0.8
             },
-            
+
           };
         var chart = new google.visualization.ComboChart(document.getElementById({ELEMENTID}));//
         chart.draw(data, options);

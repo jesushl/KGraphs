@@ -13,6 +13,40 @@ class MultiBarGraphsJSGenerator:
         self.multiBarFramework = self.multiBarFramework.replace('{ELEMENTID}', '\'{}\''.format(elementID))
         print(self.multiBarFramework)
 
+    def buildCarousel(self, xmlFile, data-target):
+        nps                 = NPSStractionData()
+        comments   = nps.getComments() 
+        commentsList
+    def getCommentSitations(self, commentsList):
+        quotesWrapper               = '<div class = "item{0}">{1}</div>'
+        commentsBlockQuote = '<blockquote> {} </blockquote>'
+        commentItems = ''
+        activeSet = False
+        for comment in commentsList:
+            currentBock =    commentsBlockQuote.format(comment)
+            if not activeSet:
+                active = ' active'
+                active = True
+            else:
+                active = ''
+            currentQuoteWrapper = quotesWrapper.format(active, currentBock)
+            commentItems = '{0}{1}'.format(commentItems, currentQuoteWrapper)
+
+        def getCarouserIndicators(self, comments, data-target):
+            indicators = ''
+            indicatorFormat = '<li data-target={0} data-slide-to="{1}" {3}>'
+            classStr                = 'class="active"'
+            activeClass         = False
+            for itemNumber in range(len(comments)):
+                currentIndicator = ''
+                if not activeClass:
+                    currentIndicator = indicatorFormat.format(data-target, itemNumber, classStr)
+                    activeClass = True
+                else:
+                    currentIndicator = indicatorFormat.format(data-target, itemNumber, '')
+                indicators = '{0} {1}'.format(indicators, currentIndicator)
+            return indicators
+
     def getLineSeriesConf(self, lineSet):
         serieString  = 'series  : {1}{0}{2},'
         seriesBuild  = '{0} : {1} type : \'line\'{2}'
