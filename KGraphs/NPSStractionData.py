@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 import pandas as pd
 import random
 from unicodedata import normalize
@@ -13,15 +13,17 @@ class NPSStractionData:
     NLPDS         = {}
 
     def getNPSDataFrame(self, documentPath):
-        df = pd.read_excel(documentPath)
+        df = pd.read_excel(documentPath )
         return df
 
     def getNPSColumnsColl(self, df):
         columnNames     = df.columns
         for questionColumnName in columnNames:
-            questionColumnName  = normalize('NFC', questionColumnName)
+            questionColumnNameStr  = normalize('NFKC', questionColumnName).encode('utf-8', 'ignore')
+            #print(type(questionColumnName))
             for question in self.NPSQuestions:
-                if question in questionColumnName:
+                #print(type(question))
+                if question in questionColumnNameStr:
                     question =  '{0}{1}{2}'.format('¿', question, '?')
                     if questionColumnName in self.NLPDS:
                         self.NLPDS[questionColumnName].update({'question' : question} )
@@ -71,8 +73,24 @@ class NPSStractionData:
             questionRow.append(random.randrange(75,100))
         return finalColl
 
+    def getComments(self, df):
+        columns =  df.columns
+        commentsColl = ''
+        commentsList        = []
+        for columnName in columns:
+            if 'que se requiere' in columnName:
+                commentsColl = columnName
+                break
+        comments = set(df[commentsColl].dropna()  )
+        for comment in comments:
+            print(normalize('NFKC', comment).encode('utf-8', 'ignore'))
+            comment = normalize('NFKC', comment).encode('iso-8859-1', 'ignore')
+            commentsList.append(comment.lower().capitalize())
+        return commentsList
+
 if  __name__ == '__main__':
     npss    = NPSStractionData()
 
     #print(npss.NLPDS)
     npss.getNPSJSON4Graph('NPS Clientes.xlsx')
+    print(npss.getComments(npss.getNPSDataFrame('NPS Clientes.xlsx')))
