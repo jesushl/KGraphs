@@ -1,0 +1,16 @@
+body {
+  background-color: black;
+}
+h2, h3{
+  color: white;
+}
+.logo{
+  background: black;
+}
+.item{
+  text-align: center;
+  color: grey;
+}
+.multiGraph{
+  align-content: center;
+}
